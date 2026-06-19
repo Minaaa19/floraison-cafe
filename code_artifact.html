@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floraison Cafe | 花香與咖啡因的溫柔角落</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/tailwind-config.js"></script>
+    <!-- Google Fonts for Elegant Serif & Sans Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@300;400;600;700&family=Playfair+Display:ital,wght=0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-brand-light text-brand-text font-sans antialiased selection:bg-brand-rose selection:text-white">
+
+    <!-- [區塊 1：Header 導覽列] -->
+    <header class="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100 transition-all duration-300" id="main-header">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <img src="img/Logo-removebg.png" alt="Floraison Logo" class="h-12 w-12 object-contain shrink-0">
+                <span class="flex flex-col items-start">
+                    <span class="font-serif text-2xl tracking-widest text-brand-text group-hover:text-brand-rose transition-colors duration-300">FLORAISON</span>
+                    <span class="text-[9px] tracking-[0.25em] text-brand-rose font-light -mt-1 uppercase">Flower & Cafe</span>
+                </span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="text-sm tracking-wider hover:text-brand-rose transition-colors duration-300">關於我們</a>
+                <a href="#menu" class="text-sm tracking-wider hover:text-brand-rose transition-colors duration-300">精選午茶</a>
+                <a href="#classes" class="text-sm tracking-wider hover:text-brand-rose transition-colors duration-300">花藝課程</a>
+                <a href="#care" class="text-sm tracking-wider hover:text-brand-rose transition-colors duration-300">花材知識</a>
+                <a href="#info" class="text-sm tracking-wider hover:text-brand-rose transition-colors duration-300">門市資訊</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="hidden md:block">
+                <button onclick="openBookingModal()" class="px-5 py-2.5 bg-brand-rose text-white text-xs tracking-widest hover:bg-brand-roseHover transition-all duration-300 rounded-sm">
+                    RESERVE / 線上訂位
+                </button>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden flex flex-col justify-between w-6 h-4 focus:outline-none" aria-label="Toggle Menu">
+                <span class="w-full h-[1.5px] bg-brand-text transition-all duration-300 origin-left" id="line1"></span>
+                <span class="w-full h-[1.5px] bg-brand-text transition-all duration-300" id="line2"></span>
+                <span class="w-full h-[1.5px] bg-brand-text transition-all duration-300 origin-left" id="line3"></span>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="md:hidden fixed top-20 left-0 w-full bg-white border-b border-gray-100 shadow-sm hidden opacity-0 transition-all duration-300 transform -translate-y-2">
+            <div class="px-6 py-6 flex flex-col space-y-4">
+                <a href="#about" class="mobile-link text-sm tracking-wider py-2 border-b border-gray-50">關於我們</a>
+                <a href="#menu" class="mobile-link text-sm tracking-wider py-2 border-b border-gray-50">精選午茶</a>
+                <a href="#classes" class="mobile-link text-sm tracking-wider py-2 border-b border-gray-50">花藝課程</a>
+                <a href="#care" class="mobile-link text-sm tracking-wider py-2 border-b border-gray-50">花材知識</a>
+                <a href="#info" class="mobile-link text-sm tracking-wider py-2 border-b border-gray-50">門市資訊</a>
+                <button onclick="openBookingModal(); toggleMobileMenu();" class="w-full py-3 bg-brand-rose text-white text-xs tracking-widest hover:bg-brand-roseHover transition-all duration-300 rounded-sm text-center">
+                    RESERVE / 線上訂位
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- [區塊 2：Hero Section 首頁主視覺] -->
+    <section class="relative min-h-screen pt-20 flex items-center justify-center overflow-hidden bg-brand-light">
+        <!-- 裝飾背景圈 -->
+        <div class="absolute top-1/4 right-[-10%] w-[500px] h-[500px] rounded-full bg-[#F3ECE9]/40 blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 left-[-5%] w-[400px] h-[400px] rounded-full bg-[#EAE3DF]/30 blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 w-full py-12 md:py-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <!-- 文字內容 -->
+            <div class="lg:col-span-7 flex flex-col justify-center space-y-8 z-10 text-center lg:text-left">
+                <div class="inline-flex items-center justify-center lg:justify-start space-x-2">
+                    <span class="h-[1px] w-8 bg-brand-rose"></span>
+                    <span class="text-xs tracking-[0.2em] text-brand-rose font-medium uppercase">SEOUL STYLE FLOWER CAFE</span>
+                </div>
+                
+                <h1 class="font-serif text-3xl md:text-5xl lg:text-6xl text-brand-text leading-tight md:leading-[1.15] font-light">
+                    在花香與咖啡因之間，<br>
+                    <span class="font-semibold block mt-2">留給自己一個溫柔的午後。</span>
+                </h1>
+                
+                <p class="text-brand-textLight text-sm md:text-base tracking-widest max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+                    結合乾燥花與永生花的複合式美學空間。在這裡，每一朵靜止的花，都與現磨咖啡的濃郁香氣一同呼吸，編織出屬於都市裡的慢時光。
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                    <button onclick="openBookingModal()" class="w-full sm:w-auto px-8 py-4 bg-brand-rose text-white text-xs tracking-widest hover:bg-brand-roseHover shadow-sm transition-all duration-300 rounded-sm hover:-translate-y-0.5">
+                        線上預約訂位
+                    </button>
+                    <a href="#classes" class="w-full sm:w-auto px-8 py-4 border border-brand-rose text-brand-rose text-xs tracking-widest hover:bg-brand-rose hover:text-white transition-all duration-300 rounded-sm text-center hover:-translate-y-0.5">
+                        探索花藝課程
+                    </a>
+                </div>
+            </div>
+
+            <!-- 意境大圖 (整合與手繪 image_19ad2e.png 完美呼應的精緻 SVG 示意圖) -->
+            <div class="lg:col-span-5 relative z-10 flex justify-center lg:justify-end">
+                <div class="relative w-full max-w-[420px] aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl group border border-white bg-white">
+                    
+                    <!-- 融合圖片加載與智慧 Fallback 的極簡容器 -->
+                    <div class="absolute inset-0 w-full h-full bg-gradient-to-br from-[#EAE3DF] via-[#FAF8F7] to-[#F1ECE9]">
+                        
+                        <!-- 📷 真實圖片位置（指向您上傳的 image_19ad2e.png） -->
+                        <img src="/img/p2.png" 
+                             alt="溫州花紫庭院意境照" 
+                             onerror="this.style.display='none'; document.getElementById('hero-fallback-svg').classList.remove('hidden');"
+                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 z-10">
+
+                        <!-- 智慧備份手繪 SVG (若圖片路徑失效時會自動顯示，確保預覽完美) -->
+                        <div id="hero-fallback-svg" class="hidden absolute inset-0 w-full h-full flex flex-col justify-between p-6 z-0">
+                            <!-- 頂部資訊列 -->
+                            <div class="flex justify-between items-start">
+                                <span class="font-serif text-xs text-brand-rose italic tracking-widest">Floraison Studio</span>
+                                <span class="text-[9px] tracking-widest text-brand-textLight border border-brand-rose/20 px-2 py-0.5 rounded">庭院意境示意</span>
+                            </div>
+
+                            <!-- 呼應 image_19ad2e.png 溫州花紫庭院：暖簾、深色木門、綠苔與石階的日韓美學手繪圖 -->
+                            <div class="w-full flex justify-center items-center my-auto py-4">
+                                <svg class="w-64 h-64 text-brand-text" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="10" y="10" width="180" height="180" rx="16" fill="#F4ECE9" opacity="0.6"/>
+                                    <rect x="30" y="40" width="140" height="110" fill="#242120" rx="4"/>
+                                    <rect x="40" y="50" width="120" height="100" fill="#1C1A19"/>
+                                    <line x1="40" y1="65" x2="160" y2="65" stroke="#2D2A29" stroke-width="0.8"/>
+                                    <line x1="80" y1="50" x2="80" y2="150" stroke="#2D2A29" stroke-width="0.8"/>
+                                    <line x1="120" y1="50" x2="120" y2="150" stroke="#2D2A29" stroke-width="0.8"/>
+                                    <g opacity="0.95">
+                                        <rect x="45" y="70" width="22" height="60" fill="#FFFFFF" rx="1"/>
+                                        <rect x="69" y="70" width="22" height="60" fill="#FAF9F6" rx="1"/>
+                                        <rect x="93" y="70" width="22" height="60" fill="#FAF8F7" rx="1"/>
+                                        <rect x="117" y="70" width="22" height="60" fill="#FFFFFF" rx="1"/>
+                                        <rect x="141" y="70" width="14" height="60" fill="#F4F3EF" rx="1"/>
+                                        <circle cx="95" cy="100" r="14" stroke="#D8A499" stroke-width="1" stroke-dasharray="2 1"/>
+                                    </g>
+                                    <path d="M20 180 C50 145, 90 155, 120 145 C150 135, 170 150, 180 180 Z" fill="#40513B" opacity="0.9"/>
+                                    <path d="M10 185 C40 160, 80 165, 110 155 C140 145, 170 165, 190 185 Z" fill="#2B3A27"/>
+                                    <ellipse cx="100" cy="165" rx="14" ry="5" fill="#EAE3DF"/>
+                                    <ellipse cx="65" cy="175" rx="12" ry="4" fill="#D2C8C3"/>
+                                    <ellipse cx="130" cy="172" rx="11" ry="4" fill="#D2C8C3"/>
+                                    <path d="M25 40 Q 45 65, 35 110" stroke="#1C1A19" stroke-width="1.2"/>
+                                    <path d="M25 40 Q 15 70, 20 100" stroke="#1C1A19" stroke-width="0.8"/>
+                                    <circle cx="35" cy="65" r="3.5" fill="#D8A499" opacity="0.8"/>
+                                    <circle cx="43" cy="80" r="2.5" fill="#E5B2A8" opacity="0.9"/>
+                                    <circle cx="38" cy="95" r="3" fill="#D8A499" opacity="0.8"/>
+                                </g>
+                            </div>
+
+                            <!-- 底部文字裝飾 -->
+                            <div class="border-t border-brand-rose/20 pt-4 flex justify-between items-center">
+                                <span class="font-serif text-base italic text-brand-text">Yamanaka Onsen Vibe</span>
+                                <span class="text-[10px] text-brand-textLight tracking-widest font-light">山中溫泉靜謐美學</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!--
+                    <div class="absolute bottom-4 left-4 right-4 bg-brand-rose/95 backdrop-blur-md text-white text-[11px] tracking-wide py-2.5 px-4 rounded-xl shadow-lg flex items-center justify-between z-30 border border-white/20">
+                        <div class="flex flex-col">
+                            <span class="text-[9px] text-white/75 font-semibold tracking-widest uppercase">Hero Image Path</span>
+                            <span class="font-mono mt-0.5 font-medium break-all">src="image_19ad2e.png"</span>
+                        </div>
+                        <span class="text-[9px] bg-white text-brand-rose font-bold px-2 py-1 rounded-md shrink-0 ml-2">📷 首頁照片位置</span>
+                    </div>
+                    -->
+                </div>
+
+                <!-- 飄浮裝飾框
+                <div class="absolute -bottom-6 -left-6 bg-white p-4 shadow-xl rounded-lg hidden sm:flex items-center space-x-3 border border-gray-50 animate-bounce" style="animation-duration: 4s; z-index: 35;">
+                    <span class="w-2.5 h-2.5 rounded-full bg-brand-rose animate-pulse"></span>
+                    <span class="text-[11px] tracking-wider text-brand-text font-medium">門市視覺實拍圖預留版面</span>
+                </div>
+            </div>
+        </div> -->
+    </section>
+
+    <!-- [區塊 3：About 關於我們] -->
+    <section id="about" class="py-24 bg-white fade-in-section">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+                <!-- 關於我們 圖片區 -->
+                <div class="lg:col-span-5 order-2 lg:order-1">
+                    <div class="relative">
+                        <!-- 雙層堆疊極簡邊框效果 -->
+                        <div class="absolute -top-4 -left-4 w-full h-full border border-brand-rose/40 rounded-xl pointer-events-none"></div>
+                        <div class="bg-brand-light rounded-xl aspect-[4/5] overflow-hidden shadow-sm relative group border border-gray-100 flex flex-col justify-between">
+                            
+                            <!-- 📷 真實圖片位置（指向您未來的關於我們空間照） -->
+                            <img src="/img/p1.png" 
+                                 alt="品牌美學空間照" 
+                                 onerror="this.style.display='none'; document.getElementById('about-fallback-svg').classList.remove('hidden');"
+                                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 z-10">
+
+                            <!-- 智慧備份手繪 SVG -->
+                            <div id="about-fallback-svg" class="absolute inset-0 p-8 flex flex-col justify-between z-0">
+                                <div class="flex justify-between items-start">
+                                    <span class="text-[10px] tracking-widest text-brand-rose font-medium uppercase">Space Design</span>
+                                    <span class="text-[9px] text-brand-textLight">空間氛圍示意</span>
+                                </div>
+
+                                <div class="my-auto py-4 flex justify-center">
+                                    <svg class="w-56 h-56 text-brand-text" viewBox="0 0 160 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="10" y="20" width="80" height="120" rx="40" fill="#EAE3DF" opacity="0.6"/>
+                                        <circle cx="110" cy="120" r="35" fill="#F3ECE9" opacity="0.8"/>
+                                        <path d="M40 180 L44 110 C44 110, 48 105, 52 110 L56 180 Z" fill="#2D2D2D"/>
+                                        <line x1="30" y1="180" x2="66" y2="180" stroke="#2D2D2D" stroke-width="2" stroke-linecap="round"/>
+                                        <path d="M48 110 Q 30 70, 32 30" stroke="#D8A499" stroke-width="1.2" stroke-linecap="round"/>
+                                        <path d="M48 110 Q 65 60, 52 20" stroke="#D8A499" stroke-width="1" stroke-linecap="round"/>
+                                        <path d="M48 110 Q 55 85, 80 45" stroke="#C59186" stroke-width="0.8" stroke-linecap="round"/>
+                                        <ellipse cx="33" cy="75" rx="5" ry="3" fill="#D8A499" opacity="0.8" transform="rotate(-15, 33, 75)"/>
+                                        <ellipse cx="31" cy="55" rx="6" ry="4" fill="#C59186" opacity="0.8" transform="rotate(10, 31, 55)"/>
+                                        <ellipse cx="32" cy="38" rx="4" ry="3" fill="#E5B2A8" opacity="0.9" transform="rotate(-5, 32, 38)"/>
+                                        <ellipse cx="58" cy="72" rx="5" ry="3.5" fill="#D8A499" opacity="0.8" transform="rotate(25, 58, 72)"/>
+                                        <ellipse cx="54" cy="50" rx="6" ry="4" fill="#E5B2A8" opacity="0.9" transform="rotate(-10, 54, 50)"/>
+                                        <ellipse cx="53" cy="30" rx="4" ry="2.5" fill="#C59186" opacity="0.8" transform="rotate(5, 53, 30)"/>
+                                        <rect x="90" y="110" width="35" height="4" fill="#2D2D2D" rx="1"/>
+                                        <line x1="94" y1="114" x2="90" y2="180" stroke="#2D2D2D" stroke-width="1.5" stroke-linecap="round"/>
+                                        <line x1="121" y1="114" x2="125" y2="180" stroke="#2D2D2D" stroke-width="1.5" stroke-linecap="round"/>
+                                        <path d="M96 110 Q 107 70, 119 110" stroke="#2D2D2D" stroke-width="1.5" fill="none"/>
+                                        <line x1="107" y1="75" x2="107" y2="110" stroke="#2D2D2D" stroke-width="1"/>
+                                    </svg>
+                                </div>
+
+                                <p class="text-[10px] text-brand-textLight tracking-widest text-center">
+                                    「手作溫度與現沖咖啡，溫柔治癒每個日常。」
+                                </p>
+                            </div>
+
+                            <!--
+                            <div class="absolute bottom-4 left-4 right-4 bg-brand-rose/95 backdrop-blur-md text-white text-[10px] tracking-wide py-2 px-3 rounded-lg shadow-md flex items-center justify-between z-30 border border-white/10">
+                                <span class="font-mono break-all text-left max-w-[180px]">src="path/to/about-space.jpg"</span>
+                                <span class="text-[8px] bg-white text-brand-rose font-bold px-1.5 py-0.5 rounded shrink-0">📷 關於我們空間照</span>
+                            </div>
+                            -->
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 關於我們 內容區 -->
+                <div class="lg:col-span-7 order-1 lg:order-2 space-y-8 text-center lg:text-left">
+                    <div class="inline-block">
+                        <span class="text-xs tracking-[0.25em] text-brand-rose font-semibold block mb-1">ABOUT FLORAISON</span>
+                        <h2 class="font-serif text-3xl md:text-4xl text-brand-text font-light leading-tight">結合永生花與精品手沖咖啡</h2>
+                        <div class="h-[1.5px] w-12 bg-brand-rose mx-auto lg:mx-0 mt-4"></div>
+                    </div>
+
+                    <div class="space-y-6 text-brand-textLight text-sm md:text-base tracking-widest leading-relaxed font-light">
+                        <p>
+                            Floraison 意為「綻放」。我們相信，在快節奏的城市裡，每個人都需要一處得以自由呼吸、悠閒綻放的空間。
+                        </p>
+                        <p>
+                            因此，我們將充滿生命力的乾燥花、永生花美學，與精心焙製的手沖咖啡、精緻甜點相融。在這裡，空氣中不僅洋溢著濃郁的單品咖啡香，更瀰漫著淡淡的天然花草香氣。
+                        </p>
+                        <p>
+                            不論您是前來挑選一份送給摯愛的永久花禮，抑或是只想在花群簇擁下享受一塊經典巴斯克蛋糕、上一堂舒心的手作課程，我們都期盼能成為您日常中那抹最溫柔的點綴。
+                        </p>
+                    </div>
+
+                    <div class="pt-4 flex flex-wrap justify-center lg:justify-start gap-8 text-left">
+                        <div>
+                            <p class="font-serif text-3xl text-brand-rose font-light">100%</p>
+                            <p class="text-xs text-brand-textLight tracking-wider mt-1">日本進口高品質不凋花</p>
+                        </div>
+                        <div class="w-[1px] h-10 bg-gray-200 hidden sm:block"></div>
+                        <div>
+                            <p class="font-serif text-3xl text-brand-rose font-light">Single O.</p>
+                            <p class="text-xs text-brand-textLight tracking-wider mt-1">產地精選精品咖啡豆</p>
+                        </div>
+                        <div class="w-[1px] h-10 bg-gray-200 hidden sm:block"></div>
+                        <div>
+                            <p class="font-serif text-3xl text-brand-rose font-light">Limited</p>
+                            <p class="text-xs text-brand-textLight tracking-wider mt-1">小班制美學花藝手作</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- [區塊 4：Cafe Menu 精選招牌] -->
+    <section id="menu" class="py-24 bg-brand-light fade-in-section">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+                <span class="text-xs tracking-[0.25em] text-brand-rose font-semibold uppercase">CAFÉ SELECTIONS</span>
+                <h2 class="font-serif text-3xl md:text-4xl text-brand-text font-light">花意盎然 · 精選午茶</h2>
+                <div class="h-[1.5px] w-12 bg-brand-rose mx-auto mt-4"></div>
+                <p class="text-brand-textLight text-xs md:text-sm tracking-widest font-light">
+                    將花卉美學融入甜點與飲品中，每一口都是視覺與味覺的雙重饗宴。
+                </p>
+            </div>
+
+            <!-- 菜單卡片網格 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- 品項 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col h-full border border-gray-50">
+                    <div class="aspect-[4/3] relative overflow-hidden bg-gradient-to-tr from-[#F1ECE9] to-[#FAF8F7] flex items-center justify-center p-6">
+                        
+                        <!-- 📷 真實圖片位置 -->
+                        <img src="/img/p3-1.png" 
+                             alt="經典原味巴斯克蛋糕" 
+                             onerror="this.style.display='none'; document.getElementById('menu-1-fallback-svg').classList.remove('hidden');"
+                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 z-10">
+
+                        <!-- 手繪巴斯克起司蛋糕示意圖 (備用) -->
+                        <div id="menu-1-fallback-svg" class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-32 h-32 text-brand-text transition-transform duration-500" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <ellipse cx="50" cy="72" rx="35" ry="10" fill="#EAE3DF"/>
+                                <ellipse cx="50" cy="70" rx="35" ry="10" fill="#FFFFFF" stroke="#D2C8C3" stroke-width="0.8"/>
+                                <path d="M28 58 L50 40 L72 58 C72 58, 65 68, 50 68 C35 68, 28 58, 28 58 Z" fill="#E8C5B0" opacity="0.9"/>
+                                <path d="M28 58 L50 40 L72 58 Z" fill="#603F26" opacity="0.95"/>
+                                <path d="M35 53 L50 43 L65 53 Z" fill="#3A1F0B"/>
+                                <circle cx="48" cy="36" r="2" fill="#D8A499"/>
+                                <path d="M48 36 Q 44 32, 42 36 Q 45 38, 48 36 Z" fill="#40513B"/>
+                            </svg>
+                        </div>
+
+                        <!--
+                        <div class="absolute bottom-3 left-3 right-3 bg-brand-rose/95 backdrop-blur-sm text-white text-[9px] tracking-wide py-1.5 px-2 rounded-lg shadow-md flex items-center justify-between z-30 border border-white/10">
+                            <span class="font-mono break-all max-w-[110px]">src="path/to/basque-cake.jpg"</span>
+                            <span class="text-[8px] bg-white text-brand-rose font-bold px-1 py-0.5 rounded shrink-0">📷 巴斯克照</span>
+                        </div>
+                        -->
+
+                        <span class="absolute top-4 right-4 text-[10px] bg-white/90 backdrop-blur-sm text-brand-rose px-2.5 py-1 tracking-widest rounded-full font-medium shadow-sm z-20">主廚首選</span>
+                    </div>
+                    <div class="p-6 flex flex-col justify-between flex-grow space-y-4">
+                        <div>
+                            <h3 class="font-serif text-lg text-brand-text font-medium group-hover:text-brand-rose transition-colors duration-300">經典原味巴斯克蛋糕</h3>
+                            <p class="text-xs text-brand-textLight tracking-widest font-light mt-2 leading-relaxed">
+                                精緻焦香外皮，包裹著半熟濃郁乳酪，口感如絲綢般綿密滑順。
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-gray-50 pt-4">
+                            <span class="text-xs tracking-widest text-brand-rose">CAKE</span>
+                            <span class="font-serif text-sm text-brand-text font-semibold">NT$ 180</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 品項 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col h-full border border-gray-50">
+                    <div class="aspect-[4/3] relative overflow-hidden bg-gradient-to-tr from-[#EAE3DF] to-[#FAF8F7] flex items-center justify-center p-6">
+                        
+                        <!-- 📷 真實圖片位置 -->
+                        <img src="/img/p4.png" 
+                             alt="大馬士革玫瑰拿鐵" 
+                             onerror="this.style.display='none'; document.getElementById('menu-2-fallback-svg').classList.remove('hidden');"
+                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 z-10">
+
+                        <!-- 手繪大馬士革玫瑰拿鐵示意圖 (備用) -->
+                        <div id="menu-2-fallback-svg" class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-32 h-32 text-brand-text transition-transform duration-500" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M35 30 L65 30 L58 75 C58 75, 50 80, 42 75 Z" fill="rgba(255,255,255,0.8)" stroke="#D2C8C3" stroke-width="1"/>
+                                <ellipse cx="50" cy="30" rx="15" ry="4" fill="#EAE3DF" stroke="#D2C8C3" stroke-width="0.8"/>
+                                <path d="M38 45 L62 45 L58 75 C58 75, 50 80, 42 75 Z" fill="#896753" opacity="0.8"/>
+                                <path d="M36 35 L64 35 L62 48 L38 48 Z" fill="#E5B2A8" opacity="0.6"/>
+                                <ellipse cx="50" cy="35" rx="14" ry="3.5" fill="#FAF8F7"/>
+                                <circle cx="50" cy="35" r="3" fill="#D8A499"/>
+                                <path d="M50 35 Q 55 31, 57 35 Z" fill="#C59186"/>
+                                <path d="M46 34 Q 42 32, 45 36 Z" fill="#D8A499"/>
+                            </svg>
+                        </div>
+
+                        <!--
+                        <div class="absolute bottom-3 left-3 right-3 bg-brand-rose/95 backdrop-blur-sm text-white text-[9px] tracking-wide py-1.5 px-2 rounded-lg shadow-md flex items-center justify-between z-30 border border-white/10">
+                            <span class="font-mono break-all max-w-[110px]">src="path/to/rose-latte.jpg"</span>
+                            <span class="text-[8px] bg-white text-brand-rose font-bold px-1 py-0.5 rounded shrink-0">📷 玫瑰拿鐵照</span>
+                        </div>
+                        -->
+
+                        <span class="absolute top-4 right-4 text-[10px] bg-white/90 backdrop-blur-sm text-brand-rose px-2.5 py-1 tracking-widest rounded-full font-medium shadow-sm z-20">季節熱銷</span>
+                    </div>
+                    <div class="p-6 flex flex-col justify-between flex-grow space-y-4">
+                        <div>
+                            <h3 class="font-serif text-lg text-brand-text font-medium group-hover:text-brand-rose transition-colors duration-300">大馬士革玫瑰拿鐵</h3>
+                            <p class="text-xs text-brand-textLight tracking-widest font-light mt-2 leading-relaxed">
+                                融合天然有機玫瑰花瓣，搭配職人中深烘焙義式濃縮與綿密奶泡。
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-gray-50 pt-4">
+                            <span class="text-xs tracking-widest text-brand-rose">BEVERAGE</span>
+                            <span class="font-serif text-sm text-brand-text font-semibold">NT$ 160</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 品項 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col h-full border border-gray-50">
+                    <div class="aspect-[4/3] relative overflow-hidden bg-gradient-to-tr from-[#F1ECE9] to-[#FAF8F7] flex items-center justify-center p-6">
+                        
+                        <!-- 📷 真實圖片位置 -->
+                        <img src="/img/p5.png" 
+                             alt="櫻花白桃氣泡飲" 
+                             onerror="this.style.display='none'; document.getElementById('menu-3-fallback-svg').classList.remove('hidden');"
+                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 z-10">
+
+                        <!-- 手繪櫻花白桃氣泡飲示意圖 (備用) -->
+                        <div id="menu-3-fallback-svg" class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-32 h-32 text-brand-text transition-transform duration-500" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M40 25 L60 25 L58 68 C58 72, 42 72, 42 68 Z" fill="rgba(255,255,255,0.7)" stroke="#D2C8C3" stroke-width="0.8"/>
+                                <line x1="50" y1="70" x2="50" y2="85" stroke="#D2C8C3" stroke-width="1.2"/>
+                                <ellipse cx="50" cy="85" rx="12" ry="3" fill="#EAE3DF"/>
+                                <path d="M41 40 L59 40 L57 68 C57 71, 43 71, 43 68 Z" fill="#E5B2A8" opacity="0.75"/>
+                                <ellipse cx="50" cy="40" rx="9" ry="2.5" fill="#FAF8F7"/>
+                                <rect x="44" y="46" width="6" height="6" rx="1" fill="#FFFFFF" opacity="0.8" transform="rotate(15, 44, 46)"/>
+                                <rect x="50" y="52" width="7" height="7" rx="1" fill="#FFFFFF" opacity="0.6" transform="rotate(-10, 50, 52)"/>
+                                <circle cx="48" cy="58" r="1.5" fill="#D8A499"/>
+                                <circle cx="53" cy="46" r="1" fill="#FFFFFF"/>
+                                <circle cx="46" cy="62" r="1.2" fill="#FFFFFF"/>
+                            </svg>
+                        </div>
+
+                        <!--
+                        <div class="absolute bottom-3 left-3 right-3 bg-brand-rose/95 backdrop-blur-sm text-white text-[9px] tracking-wide py-1.5 px-2 rounded-lg shadow-md flex items-center justify-between z-30 border border-white/10">
+                            <span class="font-mono break-all max-w-[110px]">src="path/to/peach-soda.jpg"</span>
+                            <span class="text-[8px] bg-white text-brand-rose font-bold px-1 py-0.5 rounded shrink-0">📷 氣泡飲照</span>
+                        </div>
+                        -->
+
+                    </div>
+                    <div class="p-6 flex flex-col justify-between flex-grow space-y-4">
+                        <div>
+                            <h3 class="font-serif text-lg text-brand-text font-medium group-hover:text-brand-rose transition-colors duration-300">櫻花白桃微氣泡</h3>
+                            <p class="text-xs text-brand-textLight tracking-widest font-light mt-2 leading-relaxed">
+                                晶瑩粉嫩氣泡水，蘊含香甜白桃果泥，頂部綴以優雅鹽漬櫻花瓣。
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-gray-50 pt-4">
+                            <span class="text-xs tracking-widest text-brand-rose">SODA</span>
+                            <span class="font-serif text-sm text-brand-text font-semibold">NT$ 150</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 品項 4 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col h-full border border-gray-50">
+                    <div class="aspect-[4/3] relative overflow-hidden bg-gradient-to-tr from-[#EAE3DF] to-[#FAF8F7] flex items-center justify-center p-6">
+                        
+                        <!-- 📷 真實圖片位置 -->
+                        <img src="/img/p6.png" 
+                             alt="英式薰衣草司康" 
+                             onerror="this.style.display='none'; document.getElementById('menu-4-fallback-svg').classList.remove('hidden');"
+                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 z-10">
+
+                        <!-- 手繪薰衣草司康示意圖 (備用) -->
+                        <div id="menu-4-fallback-svg" class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-32 h-32 text-brand-text transition-transform duration-500" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <ellipse cx="50" cy="72" rx="32" ry="9" fill="#EAE3DF" stroke="#D2C8C3" stroke-width="0.8"/>
+                                <path d="M32 60 C32 45, 68 45, 68 60 C68 68, 32 68, 32 60 Z" fill="#D8A499" opacity="0.95"/>
+                                <path d="M38 56 C38 48, 62 48, 62 56 C62 62, 38 62, 38 56 Z" fill="#E5B2A8" opacity="0.8"/>
+                                <path d="M45 46 Q 50 42, 55 46 Q 52 54, 45 46 Z" fill="#E5B2A8" opacity="0.9"/>
+                                <circle cx="50" cy="45" r="1.5" fill="#8470FF"/>
+                                <circle cx="53" cy="48" r="1" fill="#8470FF"/>
+                            </svg>
+                        </div>
+
+                        <!--
+                        <div class="absolute bottom-3 left-3 right-3 bg-brand-rose/95 backdrop-blur-sm text-white text-[9px] tracking-wide py-1.5 px-2 rounded-lg shadow-md flex items-center justify-between z-30 border border-white/10">
+                            <span class="font-mono break-all max-w-[110px]">src="path/to/lavender-scone.jpg"</span>
+                            <span class="text-[8px] bg-white text-brand-rose font-bold px-1 py-0.5 rounded shrink-0">📷 司康照</span>
+                        </div>
+                        -->
+
+                    </div>
+                    <div class="p-6 flex flex-col justify-between flex-grow space-y-4">
+                        <div>
+                            <h3 class="font-serif text-lg text-brand-text font-medium group-hover:text-brand-rose transition-colors duration-300">英式薰衣草司康</h3>
+                            <p class="text-xs text-brand-textLight tracking-widest font-light mt-2 leading-relaxed">
+                                外酥內鬆，咀嚼中散發淡淡有機薰衣草香氣，隨附自製手工莓果醬。
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-gray-50 pt-4">
+                            <span class="text-xs tracking-widest text-brand-rose">SCONE</span>
+                            <span class="font-serif text-sm text-brand-text font-semibold">NT$ 140</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 尾端 CTA -->
+            <div class="text-center mt-16">
+                <button onclick="openBookingModal()" class="px-8 py-4 bg-brand-rose text-white text-xs tracking-widest hover:bg-brand-roseHover shadow-sm transition-all duration-300 rounded-sm inline-flex items-center space-x-2 group">
+                    <span>立即線上預約美好午茶</span>
+                    <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- [區塊 5：Flower Class 花藝課程] -->
+    <section id="classes" class="py-24 bg-white fade-in-section">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+                <span class="text-xs tracking-[0.25em] text-brand-rose font-semibold uppercase">FLORAL WORKSHOP</span>
+                <h2 class="font-serif text-3xl md:text-4xl text-brand-text font-light">手作花藝課程</h2>
+                <div class="h-[1.5px] w-12 bg-brand-rose mx-auto mt-4"></div>
+                <p class="text-brand-textLight text-xs md:text-sm tracking-widest font-light">
+                    靜下心，聽花的話語。在專業花藝師引領下，封存一份永恆的自然美。
+                </p>
+            </div>
+
+            <!-- Tab Buttons (標籤切換) -->
+            <div class="flex justify-center mb-12">
+                <div class="inline-flex p-1 bg-brand-light rounded-full border border-gray-100">
+                    <button onclick="switchTab('daily')" id="tab-daily-btn" class="px-6 py-2.5 rounded-full text-xs tracking-widest transition-all duration-300 bg-brand-rose text-white font-medium">
+                        常態隨到隨體驗 (免預約)
+                    </button>
+                    <button onclick="switchTab('monthly')" id="tab-monthly-btn" class="px-6 py-2.5 rounded-full text-xs tracking-widest transition-all duration-300 text-brand-textLight hover:text-brand-rose font-medium">
+                        每月限定實體課 (限額)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab Content: 常態隨到隨體驗 -->
+            <div id="tab-daily" class="tab-content transition-all duration-500 opacity-100 block">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <!-- 左：課程介紹 -->
+                    <div class="space-y-6 lg:pr-6">
+                        <div class="inline-block px-3 py-1 bg-brand-rose/10 text-brand-rose text-[10px] tracking-widest rounded-full font-medium">
+                            隨時出發 / 自主手作 / 附精選茶點
+                        </div>
+                        <h3 class="font-serif text-2xl md:text-3xl text-brand-text font-light">手作永生花乾燥花書籤 ＆ 桌花體驗</h3>
+                        <p class="text-brand-textLight text-sm md:text-base leading-relaxed tracking-widest font-light">
+                            不需要提前預約，只要在營業時間內前來，點一份午茶，即可加購體驗。我們會提供完整的永生花材包、細緻的步驟圖解步驟卡與工具。
+                        </p>
+                        <ul class="space-y-3 text-sm text-brand-textLight tracking-widest font-light">
+                            <li class="flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-brand-rose"></span>
+                                <span><strong>體驗項目：</strong> 壓花金屬書籤 2 入 或 極簡隨身桌花玻璃瓶</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-brand-rose"></span>
+                                <span><strong>包含內容：</strong> 專屬精緻花材、手作卡、150 元內飲品任選</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-brand-rose"></span>
+                                <span><strong>體驗時間：</strong> 約 30 - 45 分鐘（無時間限制，可悠閒手作）</span>
+                            </li>
+                        </ul>
+                        <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                            <div>
+                                <p class="text-[10px] text-brand-textLight tracking-widest">體驗費用</p>
+                                <p class="font-serif text-xl text-brand-text font-semibold">NT$ 450 <span class="text-xs text-brand-textLight font-light">/ 人</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 右：視覺意境 (常態體驗 向量手繪圖案) -->
+                    <div class="bg-brand-light rounded-2xl aspect-video overflow-hidden shadow-sm relative group border border-gray-100 flex flex-col justify-between">
+                        
+                        <!-- 📷 真實圖片位置 -->
+                        <img src="/img/p7.png" 
+                             alt="常態手作課程照" 
+                             onerror="this.style.display='none'; document.getElementById('class-1-fallback-svg').classList.remove('hidden');"
+                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 z-10">
+
+                        <!-- 壓花書籤與茶點手繪 SVG (備用) -->
+                        <div id="class-1-fallback-svg" class="absolute inset-0 p-6 flex flex-col justify-between z-0">
+                            <div class="flex justify-between items-start">
+                                <span class="text-[10px] text-brand-rose tracking-widest uppercase font-semibold">Creative Bookmark</span>
+                                <span class="text-[9px] text-brand-textLight">常態課程設計圖樣</span>
+                            </div>
+                            <div class="my-auto py-2 flex justify-center">
+                                <svg class="w-48 h-32 text-brand-text" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 110 L190 110" stroke="#EAE3DF" stroke-width="1" stroke-dasharray="3 3"/>
+                                    <rect x="50" y="20" width="28" height="80" rx="3" fill="#FAF8F7" stroke="#D8A499" stroke-width="1.5"/>
+                                    <circle cx="64" cy="30" r="2.5" fill="#D8A499"/>
+                                    <path d="M64 30 Q 64 10, 75 10" stroke="#D8A499" stroke-width="1" stroke-linecap="round"/>
+                                    <path d="M64 85 Q 58 60, 66 42" stroke="#40513B" stroke-width="0.8" stroke-linecap="round"/>
+                                    <circle cx="66" cy="42" r="4" fill="#C59186" opacity="0.9"/>
+                                    <circle cx="58" cy="55" r="3" fill="#D8A499" opacity="0.8"/>
+                                    <path d="M64 85 Q 72 70, 70 60" stroke="#40513B" stroke-width="0.6"/>
+                                    <ellipse cx="125" cy="80" rx="20" ry="6" fill="#FAF8F7" stroke="#D2C8C3" stroke-width="1"/>
+                                    <path d="M112 60 L138 60 L134 78 C134 78, 125 83, 116 78 Z" fill="rgba(255,255,255,0.9)" stroke="#D2C8C3" stroke-width="1"/>
+                                    <path d="M136 64 C142 64, 142 74, 134 74" stroke="#D2C8C3" stroke-width="1" stroke-linecap="round"/>
+                                    <ellipse cx="125" cy="62" rx="11" ry="2.5" fill="#E5B2A8" opacity="0.8"/>
+                                </svg>
+                            </div>
+                            <p class="text-center text-[10px] text-brand-textLight tracking-widest">[ 可隨意更換為您的體驗課照片 ]</p>
+                        </div>
+
+                        <!--
+                        <div class="absolute bottom-4 left-4 right-4 bg-brand-rose/95 backdrop-blur-md text-white text-[10px] tracking-wide py-2 px-3 rounded-lg shadow-md flex items-center justify-between z-30 border border-white/10">
+                            <span class="font-mono break-all max-w-[180px]">src="path/to/bookmark-class.jpg"</span>
+                            <span class="text-[8px] bg-white text-brand-rose font-bold px-1.5 py-0.5 rounded shrink-0">📷 體驗課實拍圖</span>
+                        </div>
+                        -->
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: 每月限定實體手作課 -->
+            <div id="tab-monthly" class="tab-content transition-all duration-500 opacity-0 hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <!-- 左：課程介紹 -->
+                    <div class="space-y-6 lg:pr-6">
+                        <div class="inline-block px-3 py-1 bg-amber-50 text-amber-700 text-[10px] tracking-widest rounded-full font-medium">
+                            小班制 / 專業花藝師親授 / 包含進口花材
+                        </div>
+                        <h3 class="font-serif text-2xl md:text-3xl text-brand-text font-light">法式新娘捧花 ＆ 永生花玻璃夜燈</h3>
+                        <p class="text-brand-textLight text-sm md:text-base leading-relaxed tracking-widest font-light">
+                            由主理人與客座花藝講師親自指導。學習專業不凋花的開花技巧、色彩配比理論、空間架構與綑綁技巧，讓您帶回一件如藝術品般精緻的作品。
+                        </p>
+                        <ul class="space-y-3 text-sm text-brand-textLight tracking-widest font-light">
+                            <li class="flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-brand-rose"></span>
+                                <span><strong>本月主題 A：</strong> 浪漫經典法式捧花（含手綁與緞帶設計）</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-brand-rose"></span>
+                                <span><strong>本月主題 B：</strong> 仲夏夜之夢 · 永生玫瑰玻璃暖光夜燈</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-brand-rose"></span>
+                                <span><strong>上課時間：</strong> 每週六、日 14:00 - 16:30（每班限 6 人）</span>
+                            </li>
+                        </ul>
+                        <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                            <div>
+                                <p class="text-[10px] text-brand-textLight tracking-widest">體驗費用（含教材、進口花器、雙人午茶點心）</p>
+                                <p class="font-serif text-xl text-brand-text font-semibold">NT$ 1,980 - 2,400 <span class="text-xs text-brand-textLight font-light">/ 堂</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 右：視覺意境 (限定課程 向量手繪圖案) -->
+                    <div class="bg-brand-light rounded-2xl aspect-video overflow-hidden shadow-sm relative group border border-gray-100 flex flex-col justify-between">
+                        
+                        <!-- 📷 真實圖片位置 -->
+                        <img src="path/to/glass-dome-class.jpg" 
+                             alt="實體大師班課程照" 
+                             onerror="this.style.display='none'; document.getElementById('class-2-fallback-svg').classList.remove('hidden');"
+                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 z-10">
+
+                        <!-- 玻璃罩夜燈手繪 SVG (備用) -->
+                        <div id="class-2-fallback-svg" class="absolute inset-0 p-6 flex flex-col justify-between z-0">
+                            <div class="flex justify-between items-start">
+                                <span class="text-[10px] text-brand-rose tracking-widest uppercase font-semibold">Flower Dome Dome</span>
+                                <span class="text-[9px] text-brand-textLight">每月大師班課程示意</span>
+                            </div>
+                            <div class="my-auto py-2 flex justify-center">
+                                <svg class="w-48 h-32 text-brand-text" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <ellipse cx="100" cy="92" rx="28" ry="8" fill="#242120"/>
+                                    <ellipse cx="100" cy="90" rx="28" ry="8" fill="#503E35" stroke="#2D2D2D" stroke-width="0.8"/>
+                                    <path d="M78 90 C78 40, 122 40, 122 90" stroke="#D8A499" stroke-width="1.2" stroke-linecap="round" fill="rgba(255,255,255,0.2)"/>
+                                    <circle cx="100" cy="65" r="9" fill="#D8A499" opacity="0.95"/>
+                                    <path d="M100 65 Q 100 85, 96 90" stroke="#40513B" stroke-width="1.2" stroke-linecap="round"/>
+                                    <path d="M100 78 Q 106 75, 108 78" stroke="#40513B" stroke-width="1"/>
+                                    <circle cx="90" cy="75" r="1.5" fill="#FFD700" class="animate-pulse"/>
+                                    <circle cx="110" cy="60" r="1.2" fill="#FFD700" class="animate-pulse"/>
+                                    <circle cx="98" cy="52" r="1.8" fill="#FFD700" class="animate-pulse"/>
+                                </svg>
+                            </div>
+                            <p class="text-center text-[10px] text-brand-textLight tracking-widest">[ 可隨意更換為實體花藝課照片 ]</p>
+                        </div>
+
+                        <!--
+                        <div class="absolute bottom-4 left-4 right-4 bg-brand-rose/95 backdrop-blur-md text-white text-[10px] tracking-wide py-2 px-3 rounded-lg shadow-md flex items-center justify-between z-30 border border-white/10">
+                            <span class="font-mono break-all max-w-[180px]">src="path/to/glass-dome-class.jpg"</span>
+                            <span class="text-[8px] bg-white text-brand-rose font-bold px-1.5 py-0.5 rounded shrink-0">📷 大師班實拍圖</span>
+                        </div>
+                        -->
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 尾端 CTA -->
+            <div class="text-center mt-16">
+                <button onclick="openBookingModal('class')" class="px-8 py-4 bg-brand-rose text-white text-xs tracking-widest hover:bg-brand-roseHover shadow-sm transition-all duration-300 rounded-sm inline-flex items-center space-x-2">
+                    <span>線上報名與預約花藝課程</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- [區塊 6：Flower Care 花材照顧小知識] -->
+    <section id="care" class="py-24 bg-brand-light fade-in-section">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+                <span class="text-xs tracking-[0.25em] text-brand-rose font-semibold uppercase">FLOWER CARE</span>
+                <h2 class="font-serif text-3xl md:text-4xl text-brand-text font-light">花材照顧小知識</h2>
+                <div class="h-[1.5px] w-12 bg-brand-rose mx-auto mt-4"></div>
+                <p class="text-brand-textLight text-xs md:text-sm tracking-widest font-light">
+                    照顧乾燥花與永生花非常簡單。遵循以下三點，讓大自然的美麗在家中陪伴您更久。
+                </p>
+            </div>
+
+            <!-- 3 欄式卡片 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 知識點 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-50 flex flex-col justify-between">
+                    <div class="space-y-6">
+                        <!-- Icon 防潮 -->
+                        <div class="w-12 h-12 rounded-xl bg-brand-rose/10 flex items-center justify-center text-brand-rose">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                            </svg>
+                        </div>
+                        <div class="space-y-2">
+                            <span class="text-xs text-brand-rose tracking-wider font-semibold">RULE 01</span>
+                            <h3 class="font-serif text-lg text-brand-text font-medium">防潮禁忌，切勿澆水</h3>
+                        </div>
+                        <p class="text-brand-textLight text-xs md:text-sm tracking-widest leading-relaxed font-light">
+                            乾燥花與永生花最怕濕氣。請放置於乾燥通風處，不需澆水，梅雨季節或濕度超過 65% 時，建議開啟除濕機以防花瓣發霉或呈半透明狀。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 知識點 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-50 flex flex-col justify-between">
+                    <div class="space-y-6">
+                        <!-- Icon 陽光 -->
+                        <div class="w-12 h-12 rounded-xl bg-brand-rose/10 flex items-center justify-center text-brand-rose">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path>
+                            </svg>
+                        </div>
+                        <div class="space-y-2">
+                            <span class="text-xs text-brand-rose tracking-wider font-semibold">RULE 02</span>
+                            <h3 class="font-serif text-lg text-brand-text font-medium">避免直曬，防止褪色</h3>
+                        </div>
+                        <p class="text-brand-textLight text-xs md:text-sm tracking-widest leading-relaxed font-light">
+                            強烈的紫外線會加速乾燥花退色與脆弱脆化。請避免將花禮擺放在陽光直射的窗台或強烈射燈下，溫柔的室內散射光是最舒服的環境。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 知識點 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-50 flex flex-col justify-between">
+                    <div class="space-y-6">
+                        <!-- Icon 灰塵 -->
+                        <div class="w-12 h-12 rounded-xl bg-brand-rose/10 flex items-center justify-center text-brand-rose">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+                            </svg>
+                        </div>
+                        <div class="space-y-2">
+                            <span class="text-xs text-brand-rose tracking-wider font-semibold">RULE 03</span>
+                            <h3 class="font-serif text-lg text-brand-text font-medium">溫柔除塵，弱風吹拂</h3>
+                        </div>
+                        <p class="text-brand-textLight text-xs md:text-sm tracking-widest leading-relaxed font-light">
+                            若花禮長時間擺放而沾染些許灰塵，請勿用手擦拭。建議使用吹風機的「弱冷風」，保持約 30 公分的適當距離輕輕吹拂，或用軟毛刷溫柔拂去。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 常見疑問 (FAQ Accordion / 手風琴) -->
+            <div class="max-w-3xl mx-auto mt-16 bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-50">
+                <h3 class="font-serif text-lg text-brand-text text-center mb-6 font-medium">關於花禮的常見疑問</h3>
+                
+                <div class="space-y-4">
+                    <!-- FAQ 1 -->
+                    <div class="border-b border-gray-100 pb-4">
+                        <button onclick="toggleFaq(1)" class="w-full flex justify-between items-center text-left py-2 text-sm tracking-wider font-medium text-brand-text hover:text-brand-rose transition-colors">
+                            <span>Q1. 永生花（不凋花）與乾燥花有什麼不同？</span>
+                            <svg id="faq-icon-1" class="w-4 h-4 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div id="faq-ans-1" class="hidden mt-2 text-xs md:text-sm text-brand-textLight leading-relaxed tracking-widest pl-4">
+                            永生花是鮮花經過特殊有機脫水、染色與保存技術處理，保留了鮮花水嫩的觸感與彈性，色澤更豐富，可保存 2-3 年；而乾燥花則是鮮花自然風乾或烘乾而成，質地較為硬脆，顏色會隨著時間呈現復古的大地褐色調，可保存約 1 年。
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="border-b border-gray-100 pb-4">
+                        <button onclick="toggleFaq(2)" class="w-full flex justify-between items-center text-left py-2 text-sm tracking-wider font-medium text-brand-text hover:text-brand-rose transition-colors">
+                            <span>Q2. 花禮有提供客製化或宅配服務嗎？</span>
+                            <svg id="faq-icon-2" class="w-4 h-4 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div id="faq-ans-2" class="hidden mt-2 text-xs md:text-sm text-brand-textLight leading-relaxed tracking-widest pl-4">
+                            有的，我們提供各種尺寸的玻璃罩、花盆與花束客製。由於永生花較為精緻脆弱，雙北地區我們提供專車配送或門市自取服務；中南部地區部分盆花與花束可提供精緻防護紙箱宅配。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 尾端商城引導 CTA -->
+            <div class="text-center mt-12">
+                <button onclick="openMallModal()" class="px-8 py-4 bg-brand-rose text-white text-xs tracking-widest hover:bg-brand-roseHover shadow-sm transition-all duration-300 rounded-sm inline-flex items-center space-x-2">
+                    <span>瀏覽線上花禮商城</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- [區塊 7：Footer 門市資訊與頁尾] -->
+    <footer id="info" class="bg-white text-brand-text border-t border-gray-100">
+        <!-- 主要門市資訊 -->
+        <div class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <!-- 品牌故事簡介 -->
+            <div class="lg:col-span-4 space-y-6">
+                <a href="#" class="flex flex-col items-start">
+                    <span class="font-serif text-2xl tracking-widest text-brand-text">FLORAISON</span>
+                    <span class="text-[9px] tracking-[0.25em] text-brand-rose font-light -mt-1 uppercase">Flower & Cafe</span>
+                </a>
+                <p class="text-xs text-brand-textLight tracking-widest leading-relaxed font-light">
+                    一個將花藝美學完美融入日常的療癒角落。願每位造訪的旅客，都能在這裡尋得屬於自己的綻放姿態。
+                </p>
+                <!-- 社群連結 -->
+                <div class="flex space-x-4">
+                    <a href="#" class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-brand-textLight hover:text-brand-rose hover:border-brand-rose transition-colors">
+                        <span class="text-xs font-semibold">IG</span>
+                    </a>
+                    <a href="#" class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-brand-textLight hover:text-brand-rose hover:border-brand-rose transition-colors">
+                        <span class="text-xs font-semibold">FB</span>
+                    </a>
+                    <a href="#" class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-brand-textLight hover:text-brand-rose hover:border-brand-rose transition-colors">
+                        <span class="text-xs font-semibold">LINE</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 營業與聯絡 -->
+            <div class="lg:col-span-4 space-y-4">
+                <h3 class="font-serif text-sm tracking-widest text-brand-text font-semibold border-b border-gray-100 pb-2">INFORMATION / 營業資訊</h3>
+                <ul class="space-y-3 text-xs text-brand-textLight tracking-widest font-light leading-relaxed">
+                    <li class="flex justify-between">
+                        <span>營業時間：</span>
+                        <span class="text-brand-text">週二至週日 11:30 - 20:00 (每週一公休)</span>
+                    </li>
+                    <li class="flex justify-between">
+                        <span>聯絡電話：</span>
+                        <span class="text-brand-text">02-2345-6789</span>
+                    </li>
+                    <li class="flex justify-between">
+                        <span>電子信箱：</span>
+                        <span class="text-brand-text">hello@floraison.com.tw</span>
+                    </li>
+                    <li class="flex justify-between">
+                        <span>門市地址：</span>
+                        <span class="text-brand-text text-right">台北市大安區溫州街 99 號 1 樓</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 地圖與交通指南 -->
+            <div class="lg:col-span-4 space-y-4">
+                <h3 class="font-serif text-sm tracking-widest text-brand-text font-semibold border-b border-gray-100 pb-2">LOCATION / 交通指南</h3>
+                <!-- 地圖預留位 (優雅卡片式替代) -->
+                <div class="bg-brand-light border border-gray-100 rounded-xl p-4 aspect-[2/1] flex flex-col justify-between shadow-inner">
+                    <div class="flex items-center space-x-2 text-brand-rose">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <circle cx="12" cy="11" r="3"></circle>
+                        </svg>
+                        <span class="text-xs font-medium tracking-wider">捷運公館站 3 號出口，步行約 7 分鐘</span>
+                    </div>
+                    <div class="text-[10px] text-brand-textLight tracking-widest leading-relaxed">
+                        臨近台大溫州商圈，巷弄內備有汽車收費停車場與眾多機車停車格。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 版權與設計聲明 -->
+        <div class="border-t border-gray-100 py-8 text-center">
+            <p class="text-[10px] text-brand-textLight tracking-widest">
+                &copy; 2026 FLORAISON FLOWER & CAFE. All rights reserved. | MINA
+            </p>
+        </div>
+    </footer>
+
+
+    <!-- ==================== 互動元件：線上訂位/預約 Modal ==================== -->
+    <div id="booking-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+        <!-- 遮罩背景 -->
+        <div onclick="closeBookingModal()" class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+        
+        <!-- 視窗主體 -->
+        <div class="bg-white rounded-2xl max-w-lg w-full relative z-10 shadow-2xl border border-gray-50 overflow-hidden transform scale-95 opacity-0 transition-all duration-300" id="booking-modal-body">
+            <!-- 標題欄 -->
+            <div class="px-6 py-5 border-b border-gray-100 flex items-center justify-between bg-brand-light">
+                <div class="flex flex-col">
+                    <span class="font-serif text-lg text-brand-text font-medium" id="modal-title">線上即時預約</span>
+                    <span class="text-[10px] tracking-wider text-brand-rose uppercase" id="modal-subtitle">RESERVATION SERVICE</span>
+                </div>
+                <button onclick="closeBookingModal()" class="text-gray-400 hover:text-brand-text transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- 表單內容 -->
+            <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="p-6 space-y-4 text-left">
+                <!-- 預約類型 (自動判定或手動選擇) -->
+                <div>
+                    <label class="block text-xs text-brand-textLight tracking-widest mb-1.5 font-medium">預約項目</label>
+                    <select id="booking-type" class="w-full border border-gray-200 rounded-lg p-3 text-sm focus:outline-none focus:border-brand-rose bg-white">
+                        <option value="table">純午茶內用（可加購現場手作體驗）</option>
+                        <option value="class-daily">常態不凋花體驗課（含午茶）</option>
+                        <option value="class-monthly">每月限定大師實體手作課</option>
+                    </select>
+                </div>
+
+                <!-- 姓名與電話 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs text-brand-textLight tracking-widest mb-1.5 font-medium">聯絡姓名 *</label>
+                        <input type="text" required placeholder="如：林小姐" class="w-full border border-gray-200 rounded-lg p-3 text-sm focus:outline-none focus:border-brand-rose">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-brand-textLight tracking-widest mb-1.5 font-medium">聯絡電話 *</label>
+                        <input type="tel" required placeholder="如：0912-345678" class="w-full border border-gray-200 rounded-lg p-3 text-sm focus:outline-none focus:border-brand-rose">
+                    </div>
+                </div>
+
+                <!-- 日期與人數 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs text-brand-textLight tracking-widest mb-1.5 font-medium">預約日期 *</label>
+                        <input type="date" required class="w-full border border-gray-200 rounded-lg p-3 text-sm focus:outline-none focus:border-brand-rose">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-brand-textLight tracking-widest mb-1.5 font-medium">預約人數 *</label>
+                        <select required class="w-full border border-gray-200 rounded-lg p-3 text-sm focus:outline-none focus:border-brand-rose bg-white">
+                            <option value="1">1 位</option>
+                            <option value="2" selected>2 位</option>
+                            <option value="3">3 位</option>
+                            <option value="4">4 位</option>
+                            <option value="5-8">5 - 8 位（需拆桌）</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 備註 -->
+                <div>
+                    <label class="block text-xs text-brand-textLight tracking-widest mb-1.5 font-medium">特殊需求備註</label>
+                    <textarea rows="2" placeholder="如：需要窗邊位置、對特定花材敏感等..." class="w-full border border-gray-200 rounded-lg p-3 text-sm focus:outline-none focus:border-brand-rose"></textarea>
+                </div>
+
+                <!-- 送出按鈕 -->
+                <div class="pt-2">
+                    <button type="submit" class="w-full py-3.5 bg-brand-rose hover:bg-brand-roseHover text-white text-xs tracking-widest transition-all rounded-lg font-medium shadow-sm">
+                        確定送出並完成預約
+                    </button>
+                    <p class="text-[10px] text-brand-textLight text-center mt-3 tracking-wider">
+                        送出後，系統將發送確認簡訊至您的手機。若需變更預約請提早一天撥打客服電話。
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- ==================== 互動元件：提示框 Toast ＆ 靜態通知 ==================== -->
+    <div id="toast" class="fixed bottom-6 right-6 z-[200] transform translate-y-20 opacity-0 pointer-events-none transition-all duration-500 bg-white border border-gray-100 rounded-xl shadow-2xl p-4 max-w-sm flex items-center space-x-3">
+        <div class="w-8 h-8 rounded-full bg-green-50 flex items-center justify-center text-green-500">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+        </div>
+        <div>
+            <p class="text-xs font-semibold text-brand-text" id="toast-title">提示訊息</p>
+            <p class="text-[11px] text-brand-textLight tracking-wide mt-0.5" id="toast-msg">操作成功完成！</p>
+        </div>
+    </div>
+
+
+    <!-- ==================== JAVASCRIPT 邏輯與動畫 ==================== -->
+    <script src="js/script.js"></script>
+</body>
+</html>
